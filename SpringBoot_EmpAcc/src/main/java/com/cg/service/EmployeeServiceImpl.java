@@ -54,11 +54,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public boolean deleteEmployee(int id) throws NoEmployeeException {
 
 		eRepo.deleteById(id);
-		Optional<Employee> find = eRepo.findById(id);
-		if (find.isPresent())
-			return false;
+		Optional<Employee> emp = eRepo.findById(id);
 
-		return true;
+		return !(emp.isEmpty());
 	}
 
 }
